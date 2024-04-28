@@ -141,24 +141,24 @@ def compare_convictions(higher: relativedelta, lower: relativedelta):
 
 def check_right_to_commute(time_served, serving_time: relativedelta, decree: int, prior_convictions: bool):
     if decree == 2023 and not prior_convictions:
-        fraction_to_serve = fractionate_time(serving_time, 0.2)
-        return (compare_convictions(time_served, fraction_to_serve))
+        fractioned_time_to_serve = fractionate_time(serving_time, 0.2)
+        return (compare_convictions(time_served, fractioned_time_to_serve)), fractioned_time_to_serve
 
     elif decree != 2023 and prior_convictions:
-        fraction_to_serve = fractionate_time(serving_time, 1 / 3)
-        return (compare_convictions(time_served, fraction_to_serve))
+        fractioned_time_to_serve = fractionate_time(serving_time, 1 / 3)
+        return (compare_convictions(time_served, fractioned_time_to_serve)), fractioned_time_to_serve
 
     else:
-        fraction_to_serve = fractionate_time(serving_time, 0.25)
-        return (compare_convictions(time_served, fraction_to_serve))
+        fractioned_time_to_serve = fractionate_time(serving_time, 0.25)
+        return (compare_convictions(time_served, fractioned_time_to_serve)), fractioned_time_to_serve
 
 def commute_sentence (time_served, serving_time: relativedelta, decree: int, applied_fraction: float):
-    remiscent_sentence = subtract_convictions(serving_time, time_served)
-    if decree >= 2008 and decree != 2017 and compare_convictions(time_served, remiscent_sentence):
+    reminiscent_sentence = subtract_convictions(serving_time, time_served)
+    if decree >= 2008 and decree != 2017 and compare_convictions(time_served, reminiscent_sentence):
 
-         return fractionate_time(time_served, applied_fraction)
+        return fractionate_time(time_served, applied_fraction)
     else:
-        fractionate_time(remiscent_sentence, applied_fraction)
+        return fractionate_time(reminiscent_sentence, applied_fraction)
 
 
 
